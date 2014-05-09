@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="Contacts.Data" namespace="Contacts.Data.DTO" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="PhoneDTO" table="PHONE" lazy="true" >
+    <id name="Id" column="`ID`">
+      <generator class="identity" />
+    </id>
+    <many-to-one name="Person">
+      <column name="`PERSON_ID`" sql-type="bigint" not-null="true" />
+    </many-to-one>
+    <property name="Number">
+      <column name="`NUMBER`" sql-type="varchar" not-null="true" />
+    </property>
+    <property name="Type">
+      <column name="`TYPE_ID`" sql-type="int" not-null="true" />
+    </property>    
+    <property name="IsPrimary">
+      <column name="`IS_PRIMARY`" sql-type="bit" not-null="true" />
+    </property>
+  </class>
+</hibernate-mapping>

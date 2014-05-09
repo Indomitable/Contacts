@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{52F3D4B9-9304-4DCE-A281-0CC01357CCD4}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Contacts.Data</RootNamespace>
+    <AssemblyName>Contacts.Data</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Iesi.Collections">
+      <HintPath>..\packages\Iesi.Collections.3.2.0.4000\lib\Net35\Iesi.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate">
+      <HintPath>..\packages\NHibernate.3.3.3.4001\lib\Net35\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Adapters\BaseAdapter.cs" />
+    <Compile Include="Adapters\ContactAdapter.cs" />
+    <Compile Include="Adapters\DataAdapter.cs" />
+    <Compile Include="ConnectionManager.cs" />
+    <Compile Include="DTO\AddressDTO.cs" />
+    <Compile Include="DTO\CountryDTO.cs" />
+    <Compile Include="DTO\Gender.cs" />
+    <Compile Include="DTO\GroupDTO.cs" />
+    <Compile Include="DTO\MailDTO.cs" />
+    <Compile Include="DTO\PersonDTO.cs" />
+    <Compile Include="DTO\PhoneDTO.cs" />
+    <Compile Include="DTO\PhoneType.cs" />
+    <Compile Include="DTO\Title.cs" />
+    <Compile Include="DTO\TownDTO.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="DTO\Address.hbm.xml">
+      <DependentUpon>AddressDTO.cs</DependentUpon>
+      <LogicalName>Address.hbm.xml</LogicalName>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DTO\Country.hbm.xml">
+      <DependentUpon>CountryDTO.cs</DependentUpon>
+      <LogicalName>Country.hbm.xml</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DTO\Person.hbm.xml">
+      <DependentUpon>PersonDTO.cs</DependentUpon>
+      <LogicalName>Person.hbm.xml</LogicalName>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DTO\Mail.hbm.xml">
+      <DependentUpon>MailDTO.cs</DependentUpon>
+      <LogicalName>Mail.hbm.xml</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DTO\Phone.hbm.xml">
+      <DependentUpon>PhoneDTO.cs</DependentUpon>
+      <LogicalName>Phone.hbm.xml</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DTO\Town.hbm.xml">
+      <DependentUpon>TownDTO.cs</DependentUpon>
+      <LogicalName>Town.hbm.xml</LogicalName>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DTO\Group.hbm.xml">
+      <DependentUpon>GroupDTO.cs</DependentUpon>
+      <LogicalName>Group.hbm.xml</LogicalName>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

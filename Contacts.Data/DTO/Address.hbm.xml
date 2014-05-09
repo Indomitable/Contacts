@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="Contacts.Data" namespace="Contacts.Data.DTO" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="AddressDTO" table="`ADDRESS`" lazy="true" >
+    <id name="Id" column="`ID`">
+      <generator class="identity" />
+    </id>
+    <many-to-one name="Town">
+      <column name="`TOWN_ID`" sql-type="bigint" not-null="true" />
+    </many-to-one>
+    <property name="Address">
+      <column name="`ADDRESS`" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="PostCode">
+      <column name="`POST_CODE`" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="IsPrimary">
+      <column name="`IS_PRIMARY`" sql-type="bit" not-null="true" />
+    </property>
+    <bag name="Persons" table="`PERSON_ADDRESS`" access="field.camelcase" inverse="true">
+      <key column="`ADDRESS_ID`" />
+      <many-to-many class="PersonDTO" column="`PERSON_ID`" />
+    </bag>
+  </class>
+</hibernate-mapping>

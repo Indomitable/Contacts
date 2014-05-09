@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="Contacts.Data" namespace="Contacts.Data.DTO" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="TownDTO" table="TOWN" lazy="true" >
+    <id name="Id" column="`ID`">
+      <generator class="identity" />
+    </id>
+    <many-to-one name="Country">
+      <column name="`COUNTRY_ID`" sql-type="bigint" not-null="true" />
+    </many-to-one>
+    <property name="Name">
+      <column name="`NAME`" sql-type="nvarchar" not-null="true" />
+    </property>
+    <bag name="Addresses" access="field.camelcase">
+      <key column="`TOWN_ID`" />
+      <one-to-many class="AddressDTO" />
+    </bag>
+  </class>
+</hibernate-mapping>

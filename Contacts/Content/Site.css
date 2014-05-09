@@ -1,0 +1,172 @@
+﻿html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    font-size: 12px;
+    font-family: Verdana, "DejaVu Sans", "Liberation Sans", Arial, sans-serif;
+    background: #FFF;
+}
+
+.header {
+    height: 65px;
+    background-color: coral;
+}
+
+.contacts-container {
+    border: 1px solid gainsboro;
+    -ms-border-radius: 10px;
+    border-radius: 10px;
+    margin-left: 100px;
+    margin-right: 100px;
+}
+
+.contact-outer-cell {
+    height: 150px;
+    padding: 10px;
+}
+
+.contact-inner-cell {
+    height: 100%;
+    padding: 10px;
+    border: 1px solid grey;
+    -ms-border-radius: 5px;
+    border-radius: 5px;
+    -webkit-box-shadow: 6px -4px 5px 0px rgba(50, 50, 50, 0.75);
+    -ms-box-shadow: 6px -4px 5px 0px rgba(50, 50, 50, 0.75);
+    box-shadow: 6px -4px 5px 0px rgba(50, 50, 50, 0.75);
+}
+
+    .contact-inner-cell:hover {
+        -webkit-box-shadow: 10px -7px 5px 0px rgba(50, 50, 50, 0.75);
+        -ms-box-shadow: 10px -7px 5px 0px rgba(50, 50, 50, 0.75);
+        box-shadow: 10px -7px 5px 0px rgba(50, 50, 50, 0.75);
+        background-color: wheat;
+        position: relative;
+        left: -10px;
+        top: -10px;
+        width: 103%;
+        height: 105%;
+    }
+
+.contact-label {
+    font-weight: 700;
+}
+
+.contacts-page {
+    overflow: hidden;
+    padding-bottom: 50px;
+}
+
+    .contacts-page ul.pagination {
+        float: right;
+        margin-right: 100px;
+    }
+
+@media (min-width: 1900px) {
+    .col-xxl-3 {
+        width: 25%;
+    }
+}
+
+div.form-group {
+    margin-bottom: 10px; /* Reduce margin to 10px */
+}
+
+div.contact-details .form-horizontal {
+    overflow: hidden;
+}
+
+div.photo {
+    float: left;
+    margin-right: 10px;
+}
+
+    div.photo img {
+        height: 150px;
+        width: 150px;
+    }
+
+    h4.panel-title a {
+        display: block;
+    }
+
+div.is-primary {
+    height: 34px; 
+    padding-left: 0px
+}
+div.is-primary input[type=radio] {
+    top: 50%;
+    position: relative;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+    margin-top: 0px;
+}
+
+div.remove-button {
+    padding-left: 0px;
+}
+
+div.remove-button a {
+    position: relative;
+    top: 4px;
+}
+
+div.add-new-detail {
+    margin-top: 5px;
+}
+
+a.button {
+    color: black;
+    font-size: 20px;
+}
+
+a.button:hover {
+    text-decoration: none;
+}
+
+input.ng-dirty.ng-invalid, input.ng-dirty.ng-invalid-email {
+    border: 1px solid red;
+}
+
+div.address-panel {
+    margin-top: 5px;overflow: hidden;
+    border: 1px solid grey;
+    -ms-border-radius: 5px;
+    border-radius: 5px;
+    padding: 10px 5px 10px 10px;
+}
+
+div.address-panel div.col-sm-8, div.address-panel div.col-sm-6, div.address-panel div.col-sm-4 {
+    padding-left: 0;
+    padding-right: 5px;
+}
+
+
+div.search-panel {
+    float: left;
+    margin: 20px 0 20px 100px;
+}
+
+div.search-panel span {
+    top: 0px;
+}
+
+div.search-panel input.form-control {
+    height: 31px;
+    padding: 0 5px;
+    border-right-style: none;
+}
+
+div.search-panel span.input-group-addon {
+    height: 31px;
+    padding: 0 5px;
+    border-left-style: none;
+    background-color: #fff;
+}

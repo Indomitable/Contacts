@@ -1,0 +1,73 @@
+﻿@{
+    ViewBag.Title = "Home";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div ng-controller="contactsController" ng-init="init()" class="contacts-page">
+    <div class="header">
+        <button class="btn btn-default btn-lg" style="margin: 10px 0 0 100px;" ng-click="addContact()">Add Contact</button>
+    </div>
+    <div class="search-panel input-group input-group-lg">
+        <input type="search" class="form-control" placeholder="Search"
+               ng-model="search">
+        <span class="input-group-addon glyphicon glyphicon-search"></span>
+    </div>
+
+    <ul class="pagination">
+        <li ng-repeat="page in pages" ng-class="{ 'active': (page - 1) === currentPage }">
+            <a href="#" ng-click="loadPage(page - 1)">{{ page }}</a>
+        </li>
+    </ul>
+    <div style="clear: both"></div>
+    <div class="contacts-container">
+        <div class="container" style="width: 100%">
+            <div class="row">
+                <div ng-repeat="contact in contacts" class="col-sm-5 col-md-4 col-xxl-3 contact-outer-cell">
+                    <div class="contact-inner-cell" ng-click="editContact(contact.Id)">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <span class="contact-label">Name:</span>
+                            </div>
+                            <div class="col-sm-9">
+                                <span class="contact-value">{{ contact.Title }}<span ng-show="contact.Title">. </span>{{ contact.FullName }}</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <span class="contact-label">Phone:</span>
+                            </div>
+                            <div class="col-sm-9">
+                                <span class="contact-value">{{ contact.Phone }}</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <span class="contact-label">Email:</span>
+                            </div>
+                            <div class="col-sm-9">
+                                <span class="contact-value">{{ contact.EMail }}</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <span class="contact-label">Address:</span>
+                            </div>
+                            <div class="col-sm-9">
+                                <span class="contact-value">{{ contact.Address }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <ul class="pagination">
+        <li ng-repeat="page in pages" ng-class="{ 'active': (page - 1) === currentPage }">
+            <a href="#" ng-click="loadPage(page - 1)">{{ page }}</a>
+        </li>
+    </ul>
+</div>
+
+<script src="~/Scripts/contactsController.js"></script>
+<script src="~/Scripts/detailsController.js"></script>
+<script src="~/Scripts/details.js"></script>

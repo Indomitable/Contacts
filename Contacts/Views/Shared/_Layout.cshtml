@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+<html ng-app="contactsApp">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Content/Site.css" rel="stylesheet" />
+
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.10.0/ui-bootstrap-tpls.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
+
+    <script type="text/javascript">
+        window.sessionStorage.baseUrl = '@Url.Content("~/")';
+    </script>
+    <script src="~/Scripts/helper.js"></script>
+    <script src="~/Scripts/app.js"></script>
+</head>
+<body>
+    @RenderBody()
+</body>
+</html>

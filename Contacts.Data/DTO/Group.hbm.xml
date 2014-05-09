@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="Contacts.Data" namespace="Contacts.Data.DTO" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="GroupDTO" table="`GROUP`" lazy="true" >
+    <id name="Id" column="`ID`">
+      <generator class="identity" />
+    </id>
+    <property name="Name">
+      <column name="`NAME`" sql-type="nvarchar" not-null="true" />
+    </property>
+    <bag name="Members" table="`GROUP_MEMBER`" access="field.camelcase">
+      <key column="`GROUP_ID`" />
+      <many-to-many class="PersonDTO" column="`PERSON_ID`" />
+    </bag>
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="Contacts.Data" namespace="Contacts.Data.DTO" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="PersonDTO" table="`PERSON`" lazy="true" >
+    <id name="Id" column="`ID`">
+      <generator class="identity" />
+    </id>
+    <property name="Gender">
+      <column name="`GENDER_ID`" sql-type="int" not-null="true" />
+    </property>
+    <property name="Title">
+      <column name="`TITLE_ID`" sql-type="int" not-null="true" />
+    </property>
+    <property name="FirstName">
+      <column name="`FIRST_NAME`" sql-type="nvarchar" not-null="true" />
+    </property>
+    <property name="LastName">
+      <column name="`LAST_NAME`" sql-type="nvarchar" not-null="false" />
+    </property>
+    <bag name="Addresses" table="`PERSON_ADDRESS`" access="field.camelcase">
+      <key column="`PERSON_ID`" />
+      <many-to-many class="AddressDTO" column="`ADDRESS_ID`"  />
+    </bag>
+    <bag name="Mails" access="field.camelcase" inverse="true">
+      <key column="`PERSON_ID`" />
+      <one-to-many class="MailDTO" />
+    </bag>
+    <bag name="Phones" access="field.camelcase" inverse="true">
+      <key column="`PERSON_ID`" />
+      <one-to-many class="PhoneDTO" />
+    </bag>
+    <many-to-one name="Avatar" insert="false" update="false">
+      <column name="`ID`"></column>
+    </many-to-one>
+    <bag name="Groups" table="`GROUP_MEMBER`" access="field.camelcase" inverse="true">
+      <key column="`PERSON_ID`" />
+      <many-to-many class="GroupDTO" column="`GROUP_ID`" />
+    </bag>
+  </class>
+  <class name="PersonAvatarDTO" table="`PERSON`" lazy="true" >
+    <id name="Id" column="`ID`">
+      <generator class="identity" />
+    </id>
+    <property name="Image">
+      <column name="`AVATAR`" sql-type="image" not-null="true" length="2147483647" />
+    </property>
+  </class>
+</hibernate-mapping>

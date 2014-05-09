@@ -1,0 +1,178 @@
+﻿<div class="modal-body contact-details">
+    <div class="photo">
+        <img ng-show="model.id > 0" ng-src="{{ model.avatarUrl }}" id="avatar" />
+        <img ng-show="model.id < 0 && model.gender.id == 1" ng-src="{{ model.maleAvatarUrl }}" />
+        <img ng-show="model.id < 0 && model.gender.id == 2" ng-src="{{ model.femaleAvatarUrl }}" />
+        <div style="clear: both"></div>
+        <div ng-show="model.id > 0" style="margin-top: 10px; text-align: center">
+            <form id="imageUpload" method="post" enctype="multipart/form-data" style="width: 150px">
+                <button class="btn btn-default" onclick="uploader.onUpload()">Change Photo</button>
+                <input type="hidden" ng-value="model.id" name="id"/>
+                <input type="file" name="file" id="imageSelect" accept="image/png" name="postedFile" style="height: 0px; width: 0px" onchange="uploader.upload()" />
+            </form>
+        </div>
+    </div>
+    <form name="detailsForm">
+        <div class="panel-group" id="accordion">
+            <!-- Main -->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                            Main
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseOne" class="panel-collapse collapse in">
+                    <div class="panel-body">
+                        <div class="form-horizontal" role="form" style="margin-top: 5px">
+                            <div class="form-group">
+                                <label for="contactTitle" class="col-sm-4 control-label">Title:</label>
+                                <div class="col-sm-6">
+                                    <select id="contactTitle" class="form-control" ng-model="model.title" ng-options="t.name for t in data.titles track by t.id"></select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="contactFirstName" class="col-sm-4 control-label">First Name:</label>
+                                <div class="col-sm-6">
+                                    <input id="contactFirstName" class="form-control" ng-model="model.firstName" placeholder="First Name" required />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="contactLastName" class="col-sm-4 control-label">Last Name:</label>
+                                <div class="col-sm-6">
+                                    <input id="contactLastName" class="form-control" ng-model="model.lastName" placeholder="Last Name" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="contactGender" class="col-sm-4 control-label">Gender:</label>
+                                <div class="col-sm-6">
+                                    <select id="contactGender" class="form-control" ng-model="model.gender" ng-options="g.name for g in data.genders track by g.id"></select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Phones -->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                            Phones
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseTwo" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <div class="row" ng-repeat="phone in model.phones.data" style="padding-bottom: 5px;">
+                            <div class="col-sm-5">
+                                <select ng-options="pt.name for pt in data.phoneTypes track by pt.id" ng-model="phone.phoneType" class="form-control"></select>
+                            </div>
+                            <div class="col-sm-5" style="padding-left: 0px">
+                                <input type="tel" ng-model="phone.number" class="form-control" placeholder="Phone" required />
+                            </div>
+                            <div class="col-sm-1 is-primary">
+                                <input type="radio" ng-model="model.phones.primary" ng-value="phone.number" name="IsPrimaryPhone" />
+                            </div>
+                            <div class="col-sm-1 remove-button">
+                                <a class="button" ng-click="removePhone(phone)">
+                                    <span class="glyphicon glyphicon-remove"></span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="add-new-detail">
+                            <button class="btn btn-default" ng-click="addNewPhone()">Add New</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Emails -->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                            E-Mails
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseThree" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <div class="row" ng-repeat="mail in model.mails.data" style="padding-bottom: 5px;">
+                            <div class="col-sm-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon">@@</span>
+                                    <input type="email" ng-model="mail.email" class="form-control" placeholder="E-Mail" required />
+                                </div>
+                            </div>
+                            <div class="col-sm-1 is-primary">
+                                <input type="radio" ng-model="model.mails.primary" ng-value="mail.email" name="IsPrimaryMail" />
+                            </div>
+                            <div class="col-sm-1 remove-button">
+                                <a class="button" ng-click="removeMail(mail)">
+                                    <span class="glyphicon glyphicon-remove"></span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="add-new-detail">
+                            <button class="btn btn-default" ng-click="addNewMail()">Add New</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Addresses -->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+                            Addresses
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseFour" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <div class="address-panel" role="form" ng-repeat="address in model.addresses.data">
+                            <a class="button" ng-click="removeAddress(address)" style="position: relative; top: -12px; right: -5px; float: right">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </a>
+                            <div class="form-group">
+                                <div class="col-sm-8" style="position: inherit;">
+                                    <input type="radio" ng-model="model.addresses.primary" ng-value="address.address" name="IsPrimaryAddress" id="radio_isprimary_address_{{$index}}" />
+                                    <label for="radio_isprimary_address_{{$index}}">Address:</label>
+                                    <input type="text" ng-model="address.address" placeholder="Address"
+                                           typeahead="a.address for a in getLocation($viewValue) | filter:$viewValue"
+                                           typeahead-loading="loadingLocations" class="form-control" typeahead-min-length="3"
+                                           typeahead-on-select="addressSelected($item, address)" required>
+                                    <i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>
+                                </div>
+                                <div class="col-sm-4" style="position: relative; top: -24px">
+                                    <label>Post Code:</label>
+                                    <input type="text" placeholder="Post Code" class="form-control" ng-model="address.postCode" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-6">
+                                    <label>Town:</label>
+                                    <input type="text" placeholder="Town" class="form-control" ng-model="address.town" required />
+                                </div>
+                                <div class="col-sm-6">
+                                    <label>Country:</label>
+                                    <input type="text" placeholder="Country" class="form-control" ng-model="address.country" required />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="add-new-detail">
+                            <button class="btn btn-default" ng-click="addNewAddress()">Add Address</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="clear: both"></div>
+        <div style="margin-top: 5px; overflow: hidden">
+            <button class="btn btn-default" style="float: left; width: 100px" ng-click="save()" ng-disabled="detailsForm.$invalid">Save</button>
+            <button class="btn btn-default" style="float: left; width: 100px; margin-left: 10px;" ng-click="cancel()">Cancel</button>
+            <button class="btn btn-default" style="float: right; width: 100px" ng-click="delete()" ng-show="model.id > 0">Delete</button>
+        </div>
+    </form>
+</div>
